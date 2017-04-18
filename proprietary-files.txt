@@ -65,3 +65,6 @@ lib/hw/gralloc.sc8830.so
 lib/hw/hwcomposer.sc8830.so
 lib/hw/sensors.sc8830.so
 lib/hw/sprd_gsp.sc8830.so
+
+# STLport (local compile from LineageOS/external/stlport)
+lib/libstlport.so
