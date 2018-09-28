@@ -1,6 +1,5 @@
 #
-# Copyright (C) 2016 Android Open Source Project
-# Copyright (C) 2016 The CyanogenMod Project
+# Copyright (C) 2017 The Lineage Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,6 +16,6 @@
 
 LOCAL_PATH := $(call my-dir)
 
-ifneq (,$(filter core33g,$(TARGET_DEVICE)))
+ifneq (,$(filter gtel3g,$(TARGET_DEVICE)))
 include $(call all-makefiles-under,$(LOCAL_PATH))
 endif

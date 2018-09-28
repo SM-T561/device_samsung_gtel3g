@@ -27,7 +27,7 @@ vendor/firmware/vbc_eq
 bin/macloader
 
 # Bluetooth
-vendor/firmware/BCM4343A0_001.001.034.0056.0197_M_ORC_Core3.hcd
+vendor/firmware/BCM43430A1_001.002.009.0022.0000_Samsung_TabE_SM-T561_TEST_ONLY.hcd
 
 # RIL
 bin/rild
