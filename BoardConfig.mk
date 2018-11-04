@@ -62,5 +62,6 @@ TARGET_SCREEN_WIDTH := 800
 # Assert
 TARGET_OTA_ASSERT_DEVICE := SM-T561,SM-T560,gtel3g,gtelwifi,gtel3gxx,gtelwifixx
 
-# Gralloc
-TARGET_UPDATED_MALI := true
+# Graphics
+#TARGET_USES_GRALLOC1 := true
+#TARGET_UPDATED_MALI := true

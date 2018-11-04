@@ -40,6 +40,18 @@ on fs
     chmod 660 /dev/graphics/fb0
     chmod 660 /dev/fb0
 
+on charger
+    mount ext4 /dev/block/mmcblk0p25 /system ro wait
+    exec sfsck /dev/block/mmcblk0p27 ext4
+    mount ext4 /dev/block/mmcblk0p27 /data nosuid,nodev,noatime wait,encryptable=footer,check
+
+service charger /charger
+    class charger
+    group log
+    critical
+    seclabel u:r:healthd:s0
+
+
 #permissions for debug
     chown system system /sys/power/restart_cpc
     chmod 0220 /sys/power/restart_cpc
@@ -116,7 +128,6 @@ on boot
     chown system system /sys/module/mali/parameters/gpufreq_max_limit
     chown system system /sys/module/mali/parameters/gpufreq_min_limit
     chown system system /sys/module/mali/parameters/gpufreq_table
-    chown system system /sys/kernel/debug/mali0/memory_usage
     chown system system /sys/class/backlight/sprd_backlight/brightness
 
     chown system system /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
@@ -132,6 +143,8 @@ on boot
     chown system system /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
     chown system system /sys/devices/system/cpu/cpufreq/sprdemand/cpu_hotplug_disable
     chown media system /sys/devices/system/cpu/cpufreq/sprdemand/cpu_hotplug_disable
+    chown system system /sys/class/graphics/fb0/blank
+
     chmod 0660 /sys/devices/system/cpu/cpufreq/sprdemand/cpu_hotplug_disable
     chmod 0660 /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
     chmod 0660 /sys/devices/system/cpu/cpufreq/sprdemand/cpu_hotplug_disable
@@ -141,19 +154,20 @@ on boot
     chown system system /sys/devices/system/cpu/cpuhotplug/cpu_hotplug_disable
     chown media system /sys/devices/system/cpu/cpuhotplug/cpu_hotplug_disable
     chmod 0660 /sys/devices/system/cpu/cpuhotplug/cpu_hotplug_disable
+    chmod 0660 /sys/class/graphics/fb0/blank
 
     chown system system /sys/class/graphics/fb0/dynamic_mipi_clk
 
+# usb detect
+    mkdir /dev/bus 0755 root root
+    mkdir /dev/bus/usb 0755 root root
+
+# OTG Test
+    chown system radio /sys/class/host_notify/usb_otg/booster
+    chmod 0664 /sys/class/host_notify/usb_otg/booster
+
 on charger
-
-    exec sfsck /dev/block/mmcblk0p23 ext4
-    mount ext4 /dev/block/mmcblk0p23 /system ro,barrier=1 wait
-    exec sfsck /dev/block/mmcblk0p25 ext4
-    mount ext4 /dev/block/mmcblk0p25 /data noatime,nosuid,nodev,nomblk_io_submit wait,encryptable=footer,check
-
-    class_start core
     start console
-    start slog
 
 on alarm
     class_start core
@@ -195,11 +209,6 @@ on property:ro.config.ksm.support=true
     write /sys/kernel/mm/ksm/pages_to_scan 100
     write /sys/kernel/mm/ksm/sleep_millisecs 500
     write /sys/kernel/mm/ksm/run   1
-
-service charge /bin/charge
-    class charger
-    user root
-    oneshot
 
 on property:persist.modem.w.enable=1
     symlink /dev/spipe_w1 /dev/vbpipe1
