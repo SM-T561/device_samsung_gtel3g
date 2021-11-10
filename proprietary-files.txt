@@ -1,4 +1,5 @@
 # Un-categorized
+bin/at_distributor
 bin/engpc
 lib/libatparser.so
 
@@ -20,6 +21,11 @@ vendor/firmware/vbc_eq
 
 # WiFi
 bin/macloader
+etc/wifi/bcmdhd_apsta.bin
+etc/wifi/bcmdhd_sta.bin
+etc/wifi/bcmdhd_mfg.bin
+etc/wifi/nvram_mfg.txt
+etc/wifi/nvram_net.txt
 
 # Bluetooth
 vendor/firmware/BCM43430A1_001.002.009.0022.0000_Samsung_TabE_SM-T561_TEST_ONLY.hcd
@@ -29,10 +35,12 @@ bin/rild
 bin/modemd
 bin/nvitemd
 bin/phoneserver
+bin/refnotify
 bin/ext_data.sh
 bin/ext_kill.sh
 bin/ext_symlink.sh
 lib/libril.so
+lib/librilutils.so
 lib/libreference-ril_sp.so
 lib/libsecril-client.so
 lib/libsecnativefeature.so
