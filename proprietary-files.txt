@@ -3,7 +3,6 @@ bin/engpc
 lib/libatparser.so
 
 # GPS
-etc/gps.conf
 bin/gpsd
 bin/gps.cer
 lib/libsprd_agps_agent.so
@@ -14,10 +13,6 @@ lib/libboost.so
 lib/egl/libGLES_mali.so
 
 # Audio
-etc/audio_hw.xml
-etc/audio_para
-etc/codec_pga.xml
-etc/tiny_hw.xml
 lib/libfactoryutil.so
 lib/libomission_avoidance.so
 lib/libatchannel.so
@@ -37,7 +32,6 @@ bin/phoneserver
 bin/ext_data.sh
 bin/ext_kill.sh
 bin/ext_symlink.sh
-bin/prepare_param.sh
 lib/libril.so
 lib/libreference-ril_sp.so
 lib/libsecril-client.so
