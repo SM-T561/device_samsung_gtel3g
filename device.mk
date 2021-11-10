@@ -41,14 +41,12 @@ PRODUCT_PROPERTY_OVERRIDES += \
     media.stagefright.legacyencoder=true \
     media.stagefright.less-secure=true
 
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/media/mediaserver.rc:system/etc/init/mediaserver.rc
-
 # Rootdir files
 PRODUCT_PACKAGES += \
     init.sc8830.rc \
     init.sc8830.usb.rc \
     init.gtel3g_base.rc \
+    mediaserver.rc \
     rild.rc \
     ueventd.sc8830.rc
 
